@@ -1,4 +1,4 @@
-import knex from 'knex';
+import knex from '../db';
 import db from '../db';
 
 interface GetAuthorsParams {
@@ -8,17 +8,16 @@ interface GetAuthorsParams {
 }
 
 export const getAuthors = async ({ name, page, limit }: GetAuthorsParams) => {
-  let query = knex('authors').select('*');
+  const offset = (page - 1) * limit;
+  let query = knex('authors').select('*').offset(offset).limit(limit);
 
   if (name) {
     query = query.where('name', 'like', `%${name}%`);
   }
 
-  const offset = (page - 1) * limit;
-  query = query.limit(limit).offset(offset);
-
-  return query;
+  return await query;
 };
+
 
 // Define the types for Author
 export interface Author {

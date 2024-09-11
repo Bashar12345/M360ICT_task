@@ -2,3 +2,137 @@
 CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON bookstore_db.* TO 'newuser'@'localhost';
 FLUSH PRIVILEGES;
+
+Here are the sample JSONs for testing each endpoint in your RESTful API:
+
+### **Authors Endpoints**
+
+1. **GET /authors**
+   - **Description**: Retrieve a list of all authors.
+   - **Test JSON**: No body required.
+
+2. **GET /authors/:id**
+   - **Description**: Retrieve details of a single author.
+   - **Test JSON**: No body required.
+   - **URL Example**: `/authors/1`
+
+3. **POST /authors**
+   - **Description**: Create a new author.
+   - **Test JSON**:
+     ```json
+     {
+       "name": "John Doe",
+       "bio": "An acclaimed author known for his works in science fiction.",
+       "birthdate": "1975-04-15"
+     }
+     ```
+
+4. **PUT /authors/:id**
+   - **Description**: Update an existing author.
+   - **Test JSON**:
+     ```json
+     {
+       "name": "John Doe",
+       "bio": "An acclaimed author known for his works in science fiction and fantasy.",
+       "birthdate": "1975-04-15"
+     }
+     ```
+   - **URL Example**: `/authors/1`
+
+5. **DELETE /authors/:id**
+   - **Description**: Delete an author.
+   - **Test JSON**: No body required.
+   - **URL Example**: `/authors/1`
+
+### **Books Endpoints**
+
+1. **GET /books**
+   - **Description**: Retrieve a list of all books.
+   - **Test JSON**: No body required.
+   - **Query Example**: `/books?page=1&limit=10&title=Adventure&author=1`
+
+2. **GET /books/:id**
+   - **Description**: Retrieve details of a single book.
+   - **Test JSON**: No body required.
+   - **URL Example**: `/books/1`
+
+3. **POST /books**
+   - **Description**: Create a new book.
+   - **Test JSON**:
+     ```json
+     {
+       "title": "The Great Adventure",
+       "description": "A thrilling adventure book.",
+       "published_date": "2023-09-01",
+       "author_id": 1
+     }
+     ```
+
+4. **PUT /books/:id**
+   - **Description**: Update an existing book.
+   - **Test JSON**:
+     ```json
+     {
+       "title": "The Greatest Adventure",
+       "description": "An updated description of the thrilling adventure book.",
+       "published_date": "2023-09-01",
+       "author_id": 1
+     }
+     ```
+   - **URL Example**: `/books/1`
+
+5. **DELETE /books/:id**
+   - **Description**: Delete a book.
+   - **Test JSON**: No body required.
+   - **URL Example**: `/books/1`
+
+### **Authentication and Authorization**
+
+1. **POST /login**
+   - **Description**: Authenticate a user and return a JWT token.
+   - **Test JSON**:
+     ```json
+     {
+       "username": "user@example.com",
+       "password": "password123"
+     }
+     ```
+
+### **Example JSONs for Testing with Authentication**
+
+When using endpoints that require authentication, you'll need to include the JWT token in the `Authorization` header of your requests:
+
+- **Header Example**: `Authorization: Bearer <your_jwt_token>`
+
+### **Sample Testing with cURL**
+
+1. **GET /authors**
+   ```bash
+   curl -X GET http://localhost:3000/authors
+   ```
+
+2. **POST /authors**
+   ```bash
+   curl -X POST http://localhost:3000/authors -H "Content-Type: application/json" -d '{
+     "name": "John Doe",
+     "bio": "An acclaimed author known for his works in science fiction.",
+     "birthdate": "1975-04-15"
+   }'
+   ```
+
+3. **GET /books**
+   ```bash
+   curl -X GET "http://localhost:3000/books?page=1&limit=10"
+   ```
+
+4. **POST /books**
+   ```bash
+   curl -X POST http://localhost:3000/books -H "Content-Type: application/json" -d '{
+     "title": "The Great Adventure",
+     "description": "A thrilling adventure book.",
+     "published_date": "2023-09-01",
+     "author_id": 1
+   }'
+   ```
+
+These JSON samples should help you test your endpoints effectively. Make sure to adjust the values according to your actual data and test scenarios.

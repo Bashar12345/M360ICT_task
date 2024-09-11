@@ -7,6 +7,13 @@ export const getAuthors = async (req: Request, res: Response) => {
     const pageNum = Number(page);
     const limitNum = Number(limit);
 
+    // Validate page and limit are positive integers
+    if (pageNum < 1 || limitNum < 1) {
+      return res
+        .status(400)
+        .json({ error: 'Page and limit must be positive integers' });
+    }
+
     const authors = await authorModel.getAuthors({
       name: name ? String(name) : undefined,
       page: pageNum,
@@ -15,6 +22,7 @@ export const getAuthors = async (req: Request, res: Response) => {
 
     res.json(authors);
   } catch (error) {
+    console.error('Error retrieving authors:', error);
     res.status(500).json({ error: 'Failed to retrieve authors' });
   }
 };

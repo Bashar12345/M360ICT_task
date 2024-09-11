@@ -7,6 +7,7 @@ import express, {
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import authorRoutes from './routes/authors';
+import authenticationRoutes from './routes/authentication';
 import bookRoutes from './routes/books';
 
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
 
+app.use('/auth', authenticationRoutes);
 app.use('/authors', authorRoutes);
 app.use('/books', bookRoutes);
 

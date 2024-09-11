@@ -8,6 +8,7 @@ import {
   updateAuthor,
   deleteAuthor,
 } from '../controllers/authors';
+import { authenticate } from '../middleware/auth';
 
 const router = express.Router();
 
@@ -22,7 +23,7 @@ router.post(
     body('birthdate').isISO8601(),
     validationErrors,
   ],
-  createAuthor,
+  createAuthor, authenticate
 );
 
 router.put(
@@ -33,9 +34,9 @@ router.put(
     body('birthdate').optional().isISO8601(),
     validationErrors,
   ],
-  updateAuthor,
+  updateAuthor, authenticate
 );
 
-router.delete('/:id', [param('id').isInt(), validationErrors], deleteAuthor);
+router.delete('/:id', [param('id').isInt(), validationErrors], deleteAuthor, authenticate);
 
 export default router;

@@ -7,11 +7,12 @@ import knex from '../db';
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
+    console.log(email,password)
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const [userId] = await knex('users').insert({
-      username,
+      email,
       password: hashedPassword,
     });
 
@@ -23,9 +24,9 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    const user = await knex('users').where({ username }).first();
+    const user = await knex('users').where({ email }).first();
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }

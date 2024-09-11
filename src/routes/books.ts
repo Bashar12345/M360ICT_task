@@ -8,6 +8,7 @@ import {
   updateBook,
   deleteBook,
 } from '../controllers/books';
+import { authenticate } from '../middleware/auth';
 
 const router = express.Router();
 
@@ -32,6 +33,7 @@ router.post(
     body('published_date').isISO8601(),
     body('author_id').isInt(),
     validationErrors,
+    authenticate
   ],
   createBook,
 );
@@ -45,6 +47,7 @@ router.put(
     body('published_date').optional().isISO8601(),
     body('author_id').optional().isInt(),
     validationErrors,
+    authenticate
   ],
   updateBook,
 );
