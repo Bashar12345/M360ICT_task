@@ -52,7 +52,7 @@ A RESTful API for managing a bookstore. This API allows users to perform CRUD (C
 
    ```env
    PORT=3000
-   DATABASE_URL=mysql://user:password@localhost:3306/bookstore
+   DATABASE_URL=mysql://newuser:password@localhost:3306/bookstore_db
    ```
 
    Replace `mysql://user:password@localhost:3306/bookstore` with your actual database connection string. Adjust for PostgreSQL if needed.
