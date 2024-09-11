@@ -12,7 +12,7 @@ require('dotenv').config();
 //   },
 // });
 
-const config: { [key: string]: Knex.Config } = {
+const Configurations: { [key: string]: Knex.Config } = {
   development: {
     client: process.env.DB_CLIENT || 'mysql2',
     connection: {
@@ -27,4 +27,4 @@ const config: { [key: string]: Knex.Config } = {
   },
 };
 
-module.exports = config;
+export default Configurations;
