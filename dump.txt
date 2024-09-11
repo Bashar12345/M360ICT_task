@@ -1,0 +1,4 @@
+-- Log into MySQL as root or another privileged user
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON bookstore_db.* TO 'newuser'@'localhost';
+FLUSH PRIVILEGES;
