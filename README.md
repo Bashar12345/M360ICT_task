@@ -1,11 +1,11 @@
 Here’s a template for your `README.md` that outlines the setup and usage for your RESTful API for a bookstore:
 
 ```markdown
-# Bookstore API
+#Bookstore API
 
 A RESTful API for managing a bookstore. This API allows users to perform CRUD (Create, Read, Update, Delete) operations on books and authors.
 
-## Features
+##Features
 
 - Manage authors: Create, read, update, and delete authors.
 - Manage books: Create, read, update, and delete books.
@@ -15,7 +15,7 @@ A RESTful API for managing a bookstore. This API allows users to perform CRUD (C
 - Express for the web framework.
 - Knex for query building with MySQL or PostgreSQL.
 
-## Table of Contents
+##Table of Contents
 
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -26,7 +26,7 @@ A RESTful API for managing a bookstore. This API allows users to perform CRUD (C
 - [Contributing](#contributing)
 - [License](#license)
 
-## Installation
+##Installation
 
 1. Clone the repository:
 
@@ -46,7 +46,7 @@ A RESTful API for managing a bookstore. This API allows users to perform CRUD (C
    npm install
    ```
 
-## Configuration
+##Configuration
 
 1. Create a `.env` file in the root directory and add your environment variables:
 
@@ -62,7 +62,7 @@ A RESTful API for managing a bookstore. This API allows users to perform CRUD (C
    - Ensure MySQL or PostgreSQL is installed and running.
    - Run the database migrations to set up the schema. (Refer to your specific migration tool documentation for exact commands.)
 
-## API Endpoints
+##API Endpoints
 
 ### Authors
 
