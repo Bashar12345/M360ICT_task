@@ -1,4 +1,3 @@
-Here’s a template for your `README.md` that outlines the setup and usage for 
 # Bookstore API
 
 A RESTful API for managing a bookstore. This API allows users to perform CRUD (Create, Read, Update, Delete) operations on books and authors.
@@ -280,7 +279,6 @@ curl -X GET http://localhost:3000/authors \
 4. **Authenticate**:
     - Use the **POST** `/auth/login` to generate a token, then use that token to access protected routes by passing it in the `Authorization` header as `Bearer <token>`.
 
-Let me know if you need additional details!
 
 ## Contributing
 
