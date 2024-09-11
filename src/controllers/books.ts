@@ -1,10 +1,20 @@
 import { Request, Response } from 'express';
 import * as bookModel from '../models/bookModel';
 
+
 export const getBooks = async (req: Request, res: Response) => {
   try {
-    const { author } = req.query;
-    const books = await bookModel.getBooks(author ? Number(author) : undefined);
+    const { author, title, page = 1, limit = 10 } = req.query;
+    const pageNum = Number(page);
+    const limitNum = Number(limit);
+
+    const books = await bookModel.getBooks({
+      authorId: author ? Number(author) : undefined,
+      title: title ? String(title) : undefined,
+      page: pageNum,
+      limit: limitNum,
+    });
+
     res.json(books);
   } catch (error) {
     res.status(500).json({ error: 'Failed to retrieve books' });

@@ -87,7 +87,7 @@ Errors are returned with appropriate HTTP status codes and JSON responses. For v
 1. Start the server:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
 2. The server will run on `http://localhost:3000` (or the port specified in your `.env` file).

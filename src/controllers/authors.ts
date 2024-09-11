@@ -3,7 +3,16 @@ import * as authorModel from '../models/authorModel';
 
 export const getAuthors = async (req: Request, res: Response) => {
   try {
-    const authors = await authorModel.getAllAuthors();
+    const { name, page = 1, limit = 10 } = req.query;
+    const pageNum = Number(page);
+    const limitNum = Number(limit);
+
+    const authors = await authorModel.getAuthors({
+      name: name ? String(name) : undefined,
+      page: pageNum,
+      limit: limitNum,
+    });
+
     res.json(authors);
   } catch (error) {
     res.status(500).json({ error: 'Failed to retrieve authors' });

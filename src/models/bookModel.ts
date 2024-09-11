@@ -1,12 +1,30 @@
 import knex from '../db';
 
-// Get a list of all books, optionally filtering by author
-export const getBooks = async (authorId?: number) => {
+interface GetBooksParams {
+  authorId?: number;
+  title?: string;
+  page: number;
+  limit: number;
+}
+
+export const getBooks = async ({
+  authorId,
+  title,
+  page,
+  limit,
+}: GetBooksParams) => {
   let query = knex('books').select('*');
 
   if (authorId) {
     query = query.where('author_id', authorId);
   }
+
+  if (title) {
+    query = query.where('title', 'like', `%${title}%`);
+  }
+
+  const offset = (page - 1) * limit;
+  query = query.limit(limit).offset(offset);
 
   return query;
 };
